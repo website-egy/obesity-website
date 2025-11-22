@@ -129,4 +129,8 @@ else if (q2 === "lose") {
   document.getElementById("mealPlan").innerHTML = mealPlan;
   document.getElementById("workoutPlan").innerHTML = workoutPlan;
   planContainer.style.display = "block";  
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> d6035354a224329eeebd4ab5101ee3d4278ec952

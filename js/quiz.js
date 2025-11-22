@@ -59,4 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Redirect
     window.location.href = "results.html";
   });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> d6035354a224329eeebd4ab5101ee3d4278ec952

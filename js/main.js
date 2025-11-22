@@ -6,4 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
       window.location.href = "quiz.html";
     });
   }
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> d6035354a224329eeebd4ab5101ee3d4278ec952
