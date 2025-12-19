@@ -385,3 +385,101 @@ label {
     padding: 20px;
     text-align: center; /* centers the questions inside */
 }
+
+/* FULL WIDTH top bar: logo left, links right */
+.top-bar {
+    width: 100%;
+    background-color: #0077b6;
+    box-sizing: border-box;
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.top-bar .logo {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+}
+.top-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+.top-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 8px;
+    border-radius: 4px;
+    opacity: 0.95;
+}
+.top-nav a.active,
+.top-nav a:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+/* Removed progress bar (#progressBar and #progressContainer) */
+
+/* Layout: centered container with left-aligned stacked questions */
+.quiz-container {
+    width: 100%;
+    max-width: 900px;     /* optional maximum width for readability */
+    box-sizing: border-box;
+    padding: 20px 25px;   /* keep some left/right padding */
+    margin: 20px auto;     /* center the container horizontally */
+    display: block;        /* stack content vertically */
+    text-align: left;
+}
+
+.step {
+    margin-bottom: 18px;
+}
+
+/* End-of-quiz full-width blue bar */
+.end-bar {
+    width: 100%;
+    background-color: #0077b6;
+    box-sizing: border-box;
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+}
+.end-bar .logo {
+    color: #fff;            /* white writing */
+    font-size: 18px;
+    font-weight: 700;
+}
+.end-bar .top-nav a {
+    color: #fff;            /* ensure links are white */
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 8px;
+    border-radius: 4px;
+}
+.end-bar .top-nav a:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+/* Layout: centered container with left-aligned stacked questions */
+.quiz-container {
+    width: 100%;
+    max-width: 900px;     /* optional maximum width for readability */
+    box-sizing: border-box;
+    padding: 20px 25px;   /* keep some left/right padding */
+    margin: 20px auto;     /* center the container horizontally */
+    display: block;        /* stack content vertically */
+    text-align: left;
+}
+
+.step {
+    margin-bottom: 18px;
+}
+/* End-of-quiz full-width blue bar */
