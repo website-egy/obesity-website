@@ -12,6 +12,11 @@ body {
   color: #333;
 }
 
+.top-bar {
+    width: 100% !important;
+    display: block;
+}
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -136,4 +141,247 @@ label {
 
 .submit-btn:hover {
   background-color: #005f8a;
+}
+
+/* -----------------------
+   Results page styles
+   ----------------------- */
+
+.results-main {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* hero */
+.results-hero {
+  position: relative;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.results-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+.hero-overlay {
+  position: absolute;
+  left: 24px;
+  bottom: 18px;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+.hero-overlay h1 { font-size: 1.8rem; margin-bottom: 6px; color: #ff0048; }
+.hero-overlay p { opacity: 0.95; color: #ff4f81; }
+
+/* cards */
+.cards-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(16,24,40,0.06);
+  overflow: hidden;
+  transition: transform 160ms ease;
+}
+.card:hover { transform: translateY(-4px); }
+.card-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 18px;
+  border-bottom:1px solid #eef2f7;
+}
+.card-header h2 { font-size: 1.05rem; margin:0; color:#0b5486; }
+.toggle-btn {
+  background: transparent;
+  border: none;
+  color: #0b5486;
+  cursor:pointer;
+  font-weight:600;
+}
+.card-body {
+  padding: 16px 18px;
+  line-height: 1.5;
+}
+.card-body.collapsed { display:none; }
+
+/* actions & buttons */
+.actions { margin-top: 12px; display:flex; gap:10px; align-items:center; }
+.btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #0077b6;
+  color: white;
+  cursor:pointer;
+}
+.btn.green { background:#25D366; }
+
+/* BMI bar */
+.bmi-bar {
+  height: 12px;
+  background: #e6eef6;
+  border-radius: 10px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.bmi-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 750ms ease;
+  background: linear-gradient(90deg, #41c27d, #f9c74f, #f94144);
+}
+
+/* meal/workout content */
+#mealPlan ul, #workoutPlan ul { margin-left: 18px; margin-bottom: 10px; }
+#mealPlan h4, #workoutPlan h4 { margin-top: 8px; color:#0b5486; }
+
+/* recommendations */
+#recommendations p { margin-bottom: 8px; }
+
+/* responsive */
+@media(min-width:700px) {
+  .cards-wrapper { grid-template-columns: 1fr 1fr; }
+}
+@media(min-width:1000px) {
+  .cards-wrapper { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.results-container {
+  width: 85%;
+  margin: auto;
+  padding: 30px;
+}
+
+.result-box {
+  background: #ffffff;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.result-box h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.download-btn {
+  display: inline-block;
+  background: #4CAF50;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-top: 12px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.download-btn:hover {
+  background: #3a9441;
+}
+
+.download-section {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.download-btn {
+  padding: 12px 20px;
+  background: #2b8a3e;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.download-btn:hover {
+  background: #256f34;
+}
+
+/* Center the quiz card */
+.quiz-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+/* Quiz Page Styles */
+.quiz-container {
+  max-width: 700px;
+  margin: 50px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titles */
+.quiz-title {
+    text-align: center;
+    color: #1e88e5;
+    margin-bottom: 5px;
+}
+
+.quiz-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* Questions */
+.question-block {
+    margin-bottom: 25px;
+}
+
+.question {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Radio options */
+.question-block label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Next button */
+.next-btn {
+    display: block;
+    margin: 25px auto 0;
+    padding: 12px 30px;
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.next-btn:hover {
+    background-color: #166ec1;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    .quiz-card {
+        width: 90%;
+        padding: 20px;
+    }
+}
+.container {
+    width: 100%;
+    max-width: 700px;   /* adjust as you like */
+    margin: 0 auto;     /* centers the container */
+    padding: 20px;
+    text-align: center; /* centers the questions inside */
 }

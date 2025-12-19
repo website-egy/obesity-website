@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Your Personalized Plan - ObesityCare</title>
+
+  <!-- Main CSS (your existing) + results page styles appended -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Icons (optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- jsPDF & html2canvas for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </head>
 <body>
   <header>
@@ -18,24 +28,90 @@
     </nav>
   </header>
 
-  <section class="quiz-container">
-    <h2>Your Personalized Health Plan</h2>
+  <main class="results-main">
+    <header class="results-header">
+      <h1>Your Personalized Health Plan</h1>
+      <p>Customized 5-day meal & workout plans — downloadable as PDFs</p>
+    </header>
 
-    <p id="resultText">Loading your plan...</p>
+    <div class="results-intro" style="max-width:900px;margin:18px auto;padding:0 16px;">
+      <p><strong>Thank you for completing the quiz.</strong></p>
+      <p>Click the link below to ask ChatGPT to generate a personalized 5‑day meal and workout plan based on your answers.</p>
+      <p>
+        <a id="chatgptLink" href="#" target="_blank" rel="noopener noreferrer" class="btn">Open ChatGPT with my info</a>
+        <button id="copyPrompt" class="btn" style="margin-left:8px;">Copy prompt</button>
+      </p>
 
-    <div id="planContainer" style="display:none;">
-      <h3>Meal Plan</h3>
-      <ul id="mealPlan"></ul>
-
-      <h3>Workout Plan</h3>
-      <ul id="workoutPlan"></ul>
+      <!-- Calorie calculator results (populated by results.js) -->
+      <div id="calorieInfo" style="margin-top:12px; font-weight:600;"></div>
     </div>
-  </section>
+
+    <section class="cards-wrapper">
+
+      <!-- BMI Card -->
+      <article class="card" id="card-bmi">
+        <header class="card-header">
+          <h2>Body Mass Index (BMI)</h2>
+          <button class="toggle-btn" data-target="bmi-body">Show</button>
+        </header>
+        <div id="bmi-body" class="card-body collapsed">
+          <p id="resultText">Loading your plan...</p>
+          <div id="bmi-bar" class="bmi-bar">
+            <div class="bmi-fill" id="bmiFill"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Meal Plan Card -->
+      <article class="card" id="card-meal">
+        <header class="card-header">
+          <h2>5-Day Meal Plan</h2>
+          <button class="toggle-btn" data-target="meal-body">Show</button>
+        </header>
+        <div id="meal-body" class="card-body collapsed">
+          <div id="mealPlan"></div>
+          <div class="actions">
+            <button id="downloadMealPdf" class="btn">Download Meal Plan (PDF)</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Workout Plan Card -->
+      <article class="card" id="card-workout">
+        <header class="card-header">
+          <h2>5-Day Workout Plan</h2>
+          <button class="toggle-btn" data-target="workout-body">Show</button>
+        </header>
+        <div id="workout-body" class="card-body collapsed">
+          <div id="workoutPlan"></div>
+          <div class="actions">
+            <button id="downloadWorkoutPdf" class="btn">Download Workout Plan (PDF)</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Recommendations & Share -->
+      <article class="card" id="card-extra">
+        <header class="card-header">
+          <h2>Recommendations & Share</h2>
+          <button class="toggle-btn" data-target="extra-body">Show</button>
+        </header>
+        <div id="extra-body" class="card-body collapsed">
+          <div id="recommendations"></div>
+          <div class="actions">
+            <button id="shareWhatsApp" class="btn green"><i class="fab fa-whatsapp"></i> Share via WhatsApp</button>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
 
   <footer>
     <p>© 2025 ObesityCare. All rights reserved.</p>
   </footer>
 
+  <!-- Results script (make sure this file exists at js/results.js) -->
   <script src="js/results.js"></script>
 </body>
 </html>

@@ -7,29 +7,128 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">ObesityCare</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="quiz.html" class="active">Quiz</a></li>
-        <li><a href="results.html">Results</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Quiz Section -->
-  <section class="quiz-container">
-    <h2>Health & Lifestyle Quiz</h2>
-    <p>Answer a few questions to get a personalized health plan!</p>
+  <div class="top-bar">
+    <div class="logo">ObesityCare</div>
+    <ul class="top-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="quiz.html" class="active">Quiz</a></li>
+      <li><a href="results.html">Results</a></li>
+    </ul>
+  </div>
+  
+  <div class="quiz-container">
+  
+  <!-- in-container navigation removed; top bar moved to page top -->
+ 
+  <h2>Health & Lifestyle Quiz</h2>
+  <p>Answer a few questions to get a personalized plan!</p>
+  
+<style>
+/* FULL WIDTH top bar: logo left, links right */
+.top-bar {
+    width: 100%;
+    background-color: #0077b6;
+    box-sizing: border-box;
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.top-bar .logo {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+}
+.top-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+.top-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 8px;
+    border-radius: 4px;
+    opacity: 0.95;
+}
+.top-nav a.active,
+.top-nav a:hover {
+    background: rgba(255,255,255,0.12);
+}
 
-<!-- 🧍 User Info Section -->
-<div id="userInfo">
-  <h3>Before we start, please enter your details:</h3>
+/* Removed progress bar (#progressBar and #progressContainer) */
+
+/* Layout: centered container with left-aligned stacked questions */
+.quiz-container {
+    width: 100%;
+    max-width: 900px;     /* optional maximum width for readability */
+    box-sizing: border-box;
+    padding: 20px 25px;   /* keep some left/right padding */
+    margin: 20px auto;     /* center the container horizontally */
+    display: block;        /* stack content vertically */
+    text-align: left;
+}
+
+.step {
+    margin-bottom: 18px;
+}
+
+/* End-of-quiz full-width blue bar */
+.end-bar {
+    width: 100%;
+    background-color: #0077b6;
+    box-sizing: border-box;
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+}
+.end-bar .logo {
+    color: #fff;            /* white writing */
+    font-size: 18px;
+    font-weight: 700;
+}
+.end-bar .top-nav a {
+    color: #fff;            /* ensure links are white */
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 8px;
+    border-radius: 4px;
+}
+.end-bar .top-nav a:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+/* Layout: centered container with left-aligned stacked questions */
+.quiz-container {
+    width: 100%;
+    max-width: 900px;     /* optional maximum width for readability */
+    box-sizing: border-box;
+    padding: 20px 25px;   /* keep some left/right padding */
+    margin: 20px auto;     /* center the container horizontally */
+    display: block;        /* stack content vertically */
+    text-align: left;
+}
+
+.step {
+    margin-bottom: 18px;
+}
+</style>
+
+<!-- STEP 1 -->
+<div class="step" id="step1">
+  <h3>1. Before we start, please enter your details:</h3>
 
   <label for="weight">Weight:</label>
-  <input type="number" id="weight" placeholder="Enter weight">
+  <input type="number" id="weight" placeholder="Enter weight" required>
   <select id="weightUnit">
     <option value="kg">kg</option>
     <option value="lbs">lbs</option>
@@ -37,58 +136,155 @@
   <br><br>
 
   <label for="height">Height:</label>
-  <input type="number" id="height" placeholder="Enter height">
+  <input type="number" id="height" placeholder="Enter height" required>
   <select id="heightUnit">
     <option value="cm">cm</option>
     <option value="ft">ft</option>
   </select>
   <br><br>
+
+  <p id="toggleDetails" style="color:#007bff; cursor:pointer; margin:0;">
+    More details ▼
+  </p>
+
+  <div id="extraDetails" style="display:none; margin-top:10px;">
+    <label for="waist">Waist (cm):</label>
+    <input type="number" id="waist" placeholder="Example: 80">
+    <br><br>
+
+    <label for="hip">Hip (cm):</label>
+    <input type="number" id="hip" placeholder="Example: 95">
+  </div>
 </div>
 
-    <form id="quizForm">
-      <div class="question">
-        <h3>1. How would you describe your current weight?</h3>
-        <label><input type="radio" name="q1" value="gain"> Underweight</label><br>
-        <label><input type="radio" name="q1" value="maintain"> Normal</label><br>
-        <label><input type="radio" name="q1" value="lose"> Overweight</label>
-      </div>
+<!-- STEP 2 -->
+<div class="step" id="step2">
+  <h3>2. What is your activity level?</h3>
+  <label><input type="radio" name="activity" value="sedentary"> Sedentary</label><br>
+  <label><input type="radio" name="activity" value="light"> Light activity</label><br>
+  <label><input type="radio" name="activity" value="moderate"> Moderate activity</label><br>
+  <label><input type="radio" name="activity" value="active"> Active</label><br>
+  <label><input type="radio" name="activity" value="very_active"> Very active</label>
+</div>
 
-      <div class="question">
-        <h3>2. How active are you during the day?</h3>
-        <label><input type="radio" name="q2" value="gain"> Not active</label><br>
-        <label><input type="radio" name="q2" value="maintain"> Moderately active</label><br>
-        <label><input type="radio" name="q2" value="lose"> Very active</label>
-      </div>
+<!-- STEP 3 -->
+<div class="step" id="step3">
+  <h3>3. How many meals do you eat per day?</h3>
+  <label><input type="radio" name="q2" value="1-2"> 1–2</label><br>
+  <label><input type="radio" name="q2" value="3"> 3</label><br>
+  <label><input type="radio" name="q2" value="4+"> 4 or more</label>
+</div>
 
-      <div class="question">
-        <h3>3. What are your main health goals?</h3>
-        <label><input type="radio" name="q3" value="gain"> Gain muscle / weight</label><br>
-        <label><input type="radio" name="q3" value="maintain"> Stay the same</label><br>
-        <label><input type="radio" name="q3" value="lose"> Lose fat / weight</label>
-      </div>
+<!-- STEP 4 -->
+<div class="step" id="step4">
+  <h3>4. How would you rate your sleep quality?</h3>
+  <label><input type="radio" name="q3" value="poor"> Poor</label><br>
+  <label><input type="radio" name="q3" value="average"> Average</label><br>
+  <label><input type="radio" name="q3" value="excellent"> Excellent</label>
+</div>
 
-      <div class="question">
-        <h3>4. How many meals do you eat per day?</h3>
-        <label><input type="radio" name="q4" value="gain"> 1–2</label><br>
-        <label><input type="radio" name="q4" value="maintain"> 3</label><br>
-        <label><input type="radio" name="q4" value="lose"> 4 or more</label>
-      </div>
+<!-- STEP 5 -->
+<div class="step" id="step5">
+  <h3>5. Where do you prefer to work out?</h3>
+  <label><input type="radio" name="q4" value="home"> Home</label><br>
+  <label><input type="radio" name="q4" value="gym"> Gym</label>
+</div>
 
-      <div class="question">
-        <h3>5. How would you rate your sleep quality?</h3>
-        <label><input type="radio" name="q5" value="lose"> Poor</label><br>
-        <label><input type="radio" name="q5" value="maintain"> Average</label><br>
-        <label><input type="radio" name="q5" value="gain"> Excellent</label>
-      </div>
+<!-- STEP 6 -->
+<div class="step" id="step6">
+  <h3>6. Do you have any symptoms?</h3>
+  <label><input type="checkbox" name="symptoms" value="bloating"> Bloating</label><br>
+  <label><input type="checkbox" name="symptoms" value="constipation"> Constipation</label><br>
+  <label><input type="checkbox" name="symptoms" value="diarrhea"> Diarrhea</label><br>
+  <label><input type="checkbox" name="symptoms" value="fatigue"> Fatigue</label><br>
+  <label><input type="checkbox" name="symptoms" value="pain"> Stomach pain</label><br>
+  <label><input type="checkbox" name="symptoms" value="none"> None</label>
+</div>
 
-      <button type="submit" class="submit-btn">Submit Quiz</button>
-    </form>
-  </section>
+<!-- STEP 7 -->
+<div class="step" id="step7">
+  <h3>7. What are your goals?</h3>
+  <label><input type="checkbox" name="goals" value="weight_loss"> Weight loss</label><br>
+  <label><input type="checkbox" name="goals" value="muscle_gain"> Muscle gain</label><br>
+  <label><input type="checkbox" name="goals" value="digestion"> Improve digestion</label><br>
+  <label><input type="checkbox" name="goals" value="energy"> Increase energy</label><br>
+  <label><input type="checkbox" name="goals" value="tone"> Tone / slim body</label>
+</div>
 
-  <footer>
-    <p>© 2025 ObesityCare. All rights reserved.</p>
-  </footer>
+<!-- STEP 8 -->
+<div class="step" id="step8">
+  <h3>8. Do you have any health conditions?</h3>
+  <label><input type="checkbox" name="diseases" value="diabetes"> Diabetes</label><br>
+  <label><input type="checkbox" name="diseases" value="thyroid"> Thyroid issues</label><br>
+  <label><input type="checkbox" name="diseases" value="pcos"> PCOS</label><br>
+  <label><input type="checkbox" name="diseases" value="hypertension"> High blood pressure</label><br>
+  <label><input type="checkbox" name="diseases" value="high_cholesterol"> High Cholesterol</label><br>
+  <label><input type="checkbox" name="diseases" value="none"> None</label>
+</div>
 
-  <script src="js/quiz.js"></script>
+<!-- STEP 9 -->
+<div class="step" id="step9">
+  <h3>9. What are your dietary preferences?</h3>
+  <label><input type="checkbox" name="diet" value="normal"> No restrictions</label><br>
+  <label><input type="checkbox" name="diet" value="vegetarian"> Vegetarian</label><br>
+  <label><input type="checkbox" name="diet" value="vegan"> Vegan</label><br>
+  <label><input type="checkbox" name="diet" value="halal"> Halal</label><br>
+  <label><input type="checkbox" name="diet" value="gluten_free"> Gluten-free</label><br>
+    <label><input type="checkbox" name="diet" value="lactose_intolerance"> Lactose-intolerance</label>
+</div>
+
+<!-- STEP 10 -->
+<div class="step" id="step10">
+  <h3>10. Gender</h3>
+  <label><input type="radio" name="gender" value="female"> Female</label><br>
+  <label><input type="radio" name="gender" value="male"> Male</label><br>
+
+  <div id="pregnancyQuestion" style="display:none; margin-top:10px;">
+    <h4>Are you pregnant?</h4>
+    <label><input type="radio" name="pregnant" value="yes"> Yes</label><br>
+    <label><input type="radio" name="pregnant" value="no"> No</label>
+  </div>
+
+  <div id="lactationQuestion" style="display:none; margin-top:10px;">
+    <h4>Are you lactating?</h4>
+    <label><input type="radio" name="lactating" value="yes"> Yes</label><br>
+    <label><input type="radio" name="lactating" value="no"> No</label>
+  </div>
+  
+</div>
+
+<!-- STEP 11 -->
+<div class="step" id="step11">
+  <h3>11. Age</h3>
+  <input type="number" id="age" placeholder="Enter your age">
+</div>
+
+<!-- STEP 12 -->
+<div class="step" id="step12">
+  <h3>12. Any surgeries or past procedures?</h3>
+  <textarea id="surgeries" placeholder="Describe any surgeries (or write 'None')"></textarea>
+</div>
+
+<div style="margin-top:18px; text-align:left;">
+  <button type="button" class="submit-btn">Submit Quiz</button>
+</div>
+
+</div> <!-- end quiz-container -->
+
+<div class="end-bar">
+  <div class="logo">ObesityCare</div>
+  <ul class="top-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="quiz.html" class="active">Quiz</a></li>
+    <li><a href="results.html">Results</a></li>
+  </ul>
+</div>
+
+<footer>
+  <p>© 2025 ObesityCare. All rights reserved.</p>
+</footer>
+
+<!-- scripts (only quiz.js needed) -->
+<script src="js/quiz.js"></script>
 </body>
 </html>
