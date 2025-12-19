@@ -15,6 +15,82 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+  <!-- Responsive tweaks for mobile -->
+  <style>
+    :root { --content-max: 980px; --gap: 12px; --card-pad: 14px; }
+
+    body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+    .results-main { padding: 16px; box-sizing: border-box; margin: 0 auto; max-width: var(--content-max); }
+    .results-header { padding: 8px 0 12px; }
+    .results-header h1 { font-size: 1.25rem; margin: 0 0 6px; }
+    .results-header p { margin: 0; color: #444; font-size: 0.95rem; }
+
+    .results-intro { padding: 8px 6px; }
+
+    .cards-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--gap);
+      margin-top: 12px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .card-header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px;
+      gap: 8px;
+    }
+    .card-header h2 { font-size: 1rem; margin:0; }
+    .card-body { padding: 0 12px 12px 12px; }
+    .card-body.collapsed { display:none; }
+
+    .actions { display:flex; gap:8px; padding-top:12px; }
+    .actions .btn { white-space:normal; }
+
+    /* Make buttons and actions stack nicely on small screens */
+    .btn { padding: 10px 12px; border-radius: 8px; font-weight:600; cursor:pointer; }
+
+    /* Navbar responsive */
+    header nav.navbar { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; box-sizing:border-box; }
+    .nav-links { display:flex; gap:12px; align-items:center; }
+
+    /* Small screens */
+    @media (max-width: 700px) {
+      .results-main { padding: 12px; }
+      .results-header h1 { font-size: 1.1rem; }
+      .cards-wrapper { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      .actions .btn { width: 100%; }
+      .card-header { padding: 10px; }
+      .card-body { padding: 10px; }
+      .results-intro { padding: 8px 4px; }
+      header nav.navbar { padding: 10px 12px; }
+      .nav-links { flex-direction: row; gap:8px; font-size: 0.95rem; }
+    }
+
+    /* Larger screens: two-column layout for cards */
+    @media (min-width: 900px) {
+      .cards-wrapper { grid-template-columns: 1fr 1fr; }
+      .results-header h1 { font-size: 1.4rem; }
+    }
+
+    @media (max-width: 900px) {
+      /* treat tablets (<=900px) like mobile: stack actions & full-width buttons */
+      .actions { flex-direction: column; }
+      .actions .btn { width: 100%; }
+      .results-header h1 { font-size: 1.15rem; }
+      .card-header { padding: 10px; }
+      .card-body { padding: 10px; }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -113,5 +189,6 @@
 
   <!-- Results script (make sure this file exists at js/results.js) -->
   <script src="js/results.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
