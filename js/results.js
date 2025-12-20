@@ -126,7 +126,7 @@ if (openChatGPTBtn) {
 
   // Set ChatGPT link (note: ChatGPT URL schemes are not guaranteed to prefill for all users; this will attempt to pass a prompt)
   if (chatgptLink) {
-    const chatUrl = "https://chat.openai.com/?model=gpt-4&prompt=" + encodeURIComponent(prompt);
+    const chatUrl = "https://chat.openai.com/";
     chatgptLink.setAttribute("href", chatUrl);
   }
 
