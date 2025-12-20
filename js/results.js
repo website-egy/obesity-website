@@ -102,9 +102,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Set ChatGPT link (note: ChatGPT URL schemes are not guaranteed to prefill for all users; this will attempt to pass a prompt)
   if (chatgptLink) {
-    const chatUrl = "https://chat.openai.com/?model=gpt-4&prompt=" + encodeURIComponent(prompt);
-    chatgptLink.setAttribute("href", chatUrl);
-  }
+  chatgptLink.setAttribute("href", "https://chat.openai.com/");
+  chatgptLink.setAttribute("target", "_blank");
+}
 
   if (copyBtn) {
     copyBtn.addEventListener("click", async () => {
