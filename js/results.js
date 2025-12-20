@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (goals && goals.length) lines.push(`- Goals: ${goals.join(", ")}`);
     else if (localStorage.getItem("q3")) lines.push(`- Goal: ${localStorage.getItem("q3")}`);
     if (activity) lines.push(`- Activity level: ${activity}`);
+    if (purpose) lines.push(`- Purpose: ${purpose}`);
     if (mealsPerDay) lines.push(`- Meals per day: ${mealsPerDay}`);
     if (sleepQuality) lines.push(`- Sleep quality: ${sleepQuality}`);
     if (workoutWhere) lines.push(`- Workout preference: ${workoutWhere}`);
