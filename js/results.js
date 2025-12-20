@@ -5,7 +5,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   const mealPlanEl = document.getElementById("mealPlan");
   const workoutPlanEl = document.getElementById("workoutPlan");
   const recommendationsEl = document.getElementById("recommendations");
-  const chatgptLink = document.getElementById("chatgptLink");
+  const openChatGPTBtn = document.getElementById("openChatGPT");
+
+if (openChatGPTBtn) {
+  openChatGPTBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      window.open("https://chat.openai.com/", "_blank");
+      alert("Your personalized prompt was copied. Paste it into ChatGPT.");
+    } catch (err) {
+      window.open("https://chat.openai.com/", "_blank");
+    }
+  });
+}
   const copyBtn = document.getElementById("copyPrompt");
 
   // toggles
