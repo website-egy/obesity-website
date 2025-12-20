@@ -33,6 +33,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   try { goals = JSON.parse(localStorage.getItem("goals") || 'null') || (localStorage.getItem("q3") ? [localStorage.getItem("q3")] : null); } catch(e) { goals = [localStorage.getItem("q3")] || null; }
   const diet = localStorage.getItem("diet");
   const gender = localStorage.getItem("gender");
+  const purpose =
+  localStorage.getItem("purpose") ||
+  localStorage.getItem("goalPurpose") ||
+  "lifestyle";
   const pregnant = localStorage.getItem("pregnant");
   const lactating = localStorage.getItem("lactating");
   const age = localStorage.getItem("age");
@@ -65,7 +69,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (goals && goals.length) lines.push(`- Goals: ${goals.join(", ")}`);
     else if (localStorage.getItem("q3")) lines.push(`- Goal: ${localStorage.getItem("q3")}`);
     if (activity) lines.push(`- Activity level: ${activity}`);
-    if (purpose) lines.push(`- Purpose: ${purpose}`);
+    if (purpose) {
+  lines.push(
+    `- Purpose: ${
+      purpose === "occasion"
+        ? "Short-term goal for a specific occasion"
+        : "Long-term lifestyle change"
+    }`
+  );
+}
     if (mealsPerDay) lines.push(`- Meals per day: ${mealsPerDay}`);
     if (sleepQuality) lines.push(`- Sleep quality: ${sleepQuality}`);
     if (workoutWhere) lines.push(`- Workout preference: ${workoutWhere}`);
@@ -102,9 +114,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Set ChatGPT link (note: ChatGPT URL schemes are not guaranteed to prefill for all users; this will attempt to pass a prompt)
   if (chatgptLink) {
-  chatgptLink.setAttribute("href", "https://chat.openai.com/");
-  chatgptLink.setAttribute("target", "_blank");
-}
+    const chatUrl = "https://chat.openai.com/?model=gpt-4&prompt=" + encodeURIComponent(prompt);
+    chatgptLink.setAttribute("href", chatUrl);
+  }
 
   if (copyBtn) {
     copyBtn.addEventListener("click", async () => {
