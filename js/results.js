@@ -124,56 +124,74 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Helper to build daily meal templates
   function generateMealDay(goal, activity, dayIndex) {
-    const days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
-    const day = days[dayIndex] || `Day ${dayIndex+1}`;
-    const meals = [];
+  const days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
+  const day = days[dayIndex];
 
-    if ((goal || "").toLowerCase().includes("gain")) {
-      meals.push({ time: "Breakfast", text: "Oatmeal with banana, peanut butter, and milk" });
-      meals.push({ time: "Lunch", text: "Chicken, rice, avocado salad" });
-      meals.push({ time: "Snack", text: "Nuts & yogurt" });
-      meals.push({ time: "Dinner", text: "Salmon, quinoa, veggies" });
-    } else if ((goal || "").toLowerCase().includes("lose")) {
-      meals.push({ time: "Breakfast", text: "Greek yogurt with berries" });
-      meals.push({ time: "Lunch", text: "Grilled chicken salad" });
-      meals.push({ time: "Snack", text: "Apple slices" });
-      meals.push({ time: "Dinner", text: "Steamed fish and veggies" });
-    } else {
-      meals.push({ time: "Breakfast", text: "Eggs & whole-grain toast" });
-      meals.push({ time: "Lunch", text: "Lean sandwich & salad" });
-      meals.push({ time: "Snack", text: "Mixed fruit" });
-      meals.push({ time: "Dinner", text: "Stir-fried veggies & chicken" });
-    }
+  const gainMeals = [
+    [
+      { time: "Breakfast", text: "Oatmeal with banana & peanut butter" },
+      { time: "Lunch", text: "Chicken, rice & avocado" },
+      { time: "Dinner", text: "Salmon, quinoa & veggies" }
+    ],
+    [
+      { time: "Breakfast", text: "Eggs & whole-grain toast" },
+      { time: "Lunch", text: "Beef stir-fry & rice" },
+      { time: "Dinner", text: "Pasta with chicken" }
+    ],
+    [
+      { time: "Breakfast", text: "Smoothie with oats & protein" },
+      { time: "Lunch", text: "Turkey wrap & salad" },
+      { time: "Dinner", text: "Fish & sweet potato" }
+    ]
+  ];
 
-    return { day, meals };
-  }
+  const loseMeals = [
+    [
+      { time: "Breakfast", text: "Greek yogurt & berries" },
+      { time: "Lunch", text: "Grilled chicken salad" },
+      { time: "Dinner", text: "Steamed fish & veggies" }
+    ],
+    [
+      { time: "Breakfast", text: "Boiled eggs & toast" },
+      { time: "Lunch", text: "Tuna salad" },
+      { time: "Dinner", text: "Vegetable soup & protein" }
+    ]
+  ];
+
+  const plans =
+    goal.toLowerCase().includes("gain") ? gainMeals :
+    goal.toLowerCase().includes("lose") ? loseMeals :
+    gainMeals;
+
+  const meals = plans[dayIndex % plans.length];
+  return { day, meals };
+}
 
   // Helper to build daily workout templates (home/gym)
   function generateWorkoutDay(goal, place, dayIndex) {
-    const days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
-    const day = days[dayIndex] || `Day ${dayIndex+1}`;
-    let exercises = [];
+  const days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
+  const day = days[dayIndex];
 
-    if ((place || "").toLowerCase() === "home") {
-      if ((goal || "").toLowerCase().includes("gain")) {
-        exercises = ["Push-ups 4x8-12", "Bodyweight squats 4x8-12", "Band rows 4x8-12", "Core 3x30s"];
-      } else if ((goal || "").toLowerCase().includes("lose")) {
-        exercises = ["Jumping jacks 20 min", "HIIT circuit 20 min", "Bodyweight lunges 3x12", "Plank 3x30s"];
-      } else {
-        exercises = ["30 min brisk walk", "Bodyweight circuit 3 rounds", "Stretching 10 min"];
-      }
-    } else {
-      if ((goal || "").toLowerCase().includes("gain")) {
-        exercises = ["Barbell squat 4x6-8", "Bench press 4x6-8", "Deadlift 3x5", "Accessory & core"];
-      } else if ((goal || "").toLowerCase().includes("lose")) {
-        exercises = ["Treadmill 30-40 min", "Cycling intervals 20 min", "Light weights full-body 3x12"];
-      } else {
-        exercises = ["Elliptical 25 min", "Machine circuit 3 rounds", "Mobility & stretch"];
-      }
-    }
+  const homeGain = [
+    ["Push-ups 4x10", "Squats 4x12", "Plank 3x30s"],
+    ["Lunges 3x12", "Shoulder taps 3x20", "Glute bridges 4x15"],
+    ["Burpees 3x10", "Core circuit 15 min"]
+  ];
 
-    return { day, exercises };
-  }
+  const homeLose = [
+    ["HIIT 20 min", "Jump squats", "Plank"],
+    ["Brisk walk 40 min", "Stretching"],
+    ["Cardio circuit 30 min"]
+  ];
+
+  let workouts =
+    goal.toLowerCase().includes("gain") ? homeGain :
+    goal.toLowerCase().includes("lose") ? homeLose :
+    homeGain;
+
+  const exercises = workouts[dayIndex % workouts.length];
+  return { day, exercises };
+}
 
   // Build and render 5-day plans
   const mealDays = [];
